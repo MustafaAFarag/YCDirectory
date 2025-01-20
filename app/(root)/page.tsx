@@ -1,6 +1,11 @@
-import SearchForm from "../components/SearchForm";
+import SearchForm from "../../components/SearchForm";
 
-export default function page() {
+export default async function page({
+  searchParams,
+}: {
+  searchParams: Promise<{ query?: string }>;
+}) {
+  const query = (await searchParams).query;
   return (
     <>
       <section className="pink_container">
@@ -13,7 +18,7 @@ export default function page() {
           Submit Ideas, Vote on Pitches, and Get Noticed in Virtual Competitions
         </p>
 
-        <SearchForm />
+        <SearchForm query={query} />
       </section>
     </>
   );
